@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single"
+        android:id="@+id/house">
+        <item
+            android:id="@+id/nav_house"
+            android:icon="@drawable/nav_house"
+            android:title="主页" />
+
+    </group>
+    <group android:checkableBehavior="single"
+        android:id="@+id/things">
+        <item
+            android:id="@+id/nav_memorandum"
+            android:icon="@drawable/nav_memorandum"
+            android:title="备忘录" />
+        <item
+            android:id="@+id/nav_countdown"
+            android:icon="@drawable/nav_countdown"
+            android:title="倒计时" />
+        <item
+            android:id="@+id/nav_analyse"
+            android:icon="@drawable/nav_analyse"
+            android:title="学习时间分析" />
+        <item
+            android:id="@+id/nav_alarm"
+            android:icon="@drawable/nav_alarm"
+            android:title="定时提醒" />
+
+    </group>
+
+
+</menu>

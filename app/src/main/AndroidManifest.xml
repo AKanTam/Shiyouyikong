@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.materialtest">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MemorandumAmendActivity"
+            android:label="修改备忘录"/>
+        <activity android:name=".MemorandumEditActivity"
+            android:label="新建备忘录"/>
+        <activity android:name=".CountdownActivity"
+            android:label="倒计时"/>
+        <activity android:name=".AnalyseActivity"
+            android:label="学习时间分析"/>
+        <activity android:name=".MemorandumActivity"
+            android:label="备忘录"/>
+        <activity android:name=".AlarmActivity"
+            android:label="定时提醒"/>
+        <activity android:name=".MainActivity"
+            android:label="时由意控">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
