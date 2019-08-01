@@ -15,4 +15,13 @@
     <string name="str_upcoming">待办</string>
     <string name="str_notice">提醒</string>
     <string name="other_operation">其他选项：</string>
+    <string name="hello">Hello World, EX06_10</string>
+    <string name="str_button1">设置闹钟</string>
+    <string name="str_button2">删除闹钟</string>
+    <string name="str_title1">只响一次的闹钟</string>
+    <string name="str_title2">重复响起的闹钟</string>
+    <string name="str_default">目前无设置</string>
+    <string name="str_text1">开始时间</string>
+    <string name="str_text2">重复响起的闹钟</string>
+    <string name="str_text3">秒</string>
 </resources>

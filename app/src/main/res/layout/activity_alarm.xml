@@ -29,13 +29,35 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"><!--下拉刷新-->
-            <TextView
+
+                                           <!--1111-->
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="这里是定时提醒模块，但是此模块被哪吒打烂了"
-                android:textSize="15dp"/>
+                android:padding="32dp">
 
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:showDividers="end|beginning"
+                    >
+
+                    <ListView
+                        android:id="@+id/alarm_listView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:divider="@color/black"
+                        android:dividerHeight="1sp">
+                    </ListView>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <!--1111-->
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <android.support.design.widget.FloatingActionButton

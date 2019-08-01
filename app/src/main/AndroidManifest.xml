@@ -10,19 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MemorandumAmendActivity"
-            android:label="修改备忘录"/>
-        <activity android:name=".MemorandumEditActivity"
-            android:label="新建备忘录"/>
-        <activity android:name=".CountdownActivity"
-            android:label="倒计时"/>
-        <activity android:name=".AnalyseActivity"
-            android:label="学习时间分析"/>
-        <activity android:name=".MemorandumActivity"
-            android:label="备忘录"/>
-        <activity android:name=".AlarmActivity"
-            android:label="定时提醒"/>
-        <activity android:name=".MainActivity"
+        <activity android:name=".Alarm.DeleteAlarmActivity"></activity>
+        <activity android:name=".Alarm.AlarmEditActivity" />
+        <activity
+            android:name=".MemorandumAmendActivity"
+            android:label="修改备忘录" />
+        <activity
+            android:name=".MemorandumEditActivity"
+            android:label="新建备忘录" />
+        <activity
+            android:name=".CountdownActivity"
+            android:label="倒计时" />
+        <activity
+            android:name=".AnalyseActivity"
+            android:label="学习时间分析" />
+        <activity
+            android:name=".MemorandumActivity"
+            android:label="备忘录" />
+        <activity
+            android:name=".AlarmActivity"
+            android:label="定时提醒" />
+        <activity
+            android:name=".MainActivity"
             android:label="时由意控">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -30,6 +39,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <receiver android:name=".CallAlarm" />
+
+        <activity
+            android:name=".AlarmAlert"
+            android:label="@string/app_name" />
     </application>
 
 </manifest>

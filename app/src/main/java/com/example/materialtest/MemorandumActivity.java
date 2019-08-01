@@ -39,7 +39,7 @@ import com.example.materialtest.util.MyFormat;
 
 
 
-public class MemorandumActivity extends AppCompatActivity implements View.OnClickListener,
+public class MemorandumActivity extends BaseActivity implements View.OnClickListener,
         AdapterView.OnItemClickListener,AdapterView.OnItemLongClickListener{
 
     MyDB myDB;

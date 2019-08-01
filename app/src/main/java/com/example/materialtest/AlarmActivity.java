@@ -11,39 +11,80 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import java.util.Calendar;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.TimePickerDialog;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TimePicker;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
-
-import com.example.materialtest.R;
-
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.CursorAdapter;
+import android.widget.ImageButton;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
-public class AlarmActivity extends AppCompatActivity {
+import com.example.materialtest.Alarm.*;
+
+
+
+public class AlarmActivity extends BaseActivity implements View.OnClickListener,AdapterView.OnItemClickListener,
+        AdapterView.OnItemLongClickListener{
 
     private DrawerLayout mDrawerLayout;//滑动菜单
 
-    private SwipeRefreshLayout swipeRefresh;
-    //刷新逻辑
+    private SwipeRefreshLayout swipeRefresh;//刷新逻辑
+
+    private ListView listView;//alarm show list
+    private ArrayList<String> sList=new ArrayList<>();
+    private SimpleCursorAdapter cursorAdapter;
+    private DataBaseOperator dbOpeater;
+    private SQLiteDatabase wb;
+    private Cursor mCursor;//数据库指针
+    private final String TAG="AlarmActivity";
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alarm);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        //
+        listView=(ListView)findViewById(R.id.alarm_listView);
+        listView.setOnItemClickListener(this);
+        listView.setOnItemLongClickListener(this);
+
+        dbOpeater = new DataBaseOperator(this);//数据库对象
+
+        //
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);//Toolbar
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);//滑动菜单
+        mDrawerLayout = findViewById(R.id.drawer_layout);
+        NavigationView navView = findViewById(R.id.nav_view);//滑动菜单
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         }
+
+
         navView.setCheckedItem(R.id.nav_alarm);//默认选中
         navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -74,26 +115,22 @@ public class AlarmActivity extends AppCompatActivity {
                 return true;
             }
         });//滑动菜单
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {//浮动按钮点击事件
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Data refresh", Snackbar.LENGTH_SHORT)
-                        .setAction("Undo", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                Toast.makeText(AlarmActivity.this, "Data restored", Toast.LENGTH_SHORT).show();
-                            }//undo点击事件
-                        })
-                        .show();
+                Intent intent =new Intent(AlarmActivity.this,AlarmEditActivity.class);
+                startActivity(intent);
+                //cursorAdapter.notifyDataSetChanged();
+
             }
         });//浮动按钮逻辑
 
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+
 
 
         //
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        swipeRefresh = findViewById(R.id.swipe_refresh);
         swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -102,6 +139,56 @@ public class AlarmActivity extends AppCompatActivity {
             }
         });//下拉刷新逻辑
     }
+
+
+
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mCursor=dbOpeater.query(MyDataBaseHelper.ALARM_TB_NAME);//获得alarm的table
+        String [] colums = {MyDataBaseHelper.COL_TIME,MyDataBaseHelper.COL_ALARM_STATUS,MyDataBaseHelper.COL_ALARM_REPEAT_TIMES};
+        int[] layoutsId = {R.id.alarm_time,R.id.alarm_status,R.id.alarm_repeat_times};
+        cursorAdapter=new SimpleCursorAdapter(this,R.layout.alarm_item,mCursor,colums,layoutsId, CursorAdapter.FLAG_AUTO_REQUERY);
+        listView.setAdapter(cursorAdapter);
+    }
+    @Override
+    protected void onStop() {
+        mCursor.close();
+        super.onStop();
+    }
+
+
+    public void onClick(View v) {
+
+        }
+
+
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+        Intent intent=new Intent(this,AlarmEditActivity.class);
+        TextView modify_time= (TextView) view.findViewById(R.id.alarm_time);
+        intent.putExtra("time",modify_time.getText());
+        intent.putExtra("position",position+1);
+        Log.d(TAG,"要修改时间为"+modify_time.getText());
+        startActivity(intent);
+
+
+    }
+
+
+    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+        Intent intent = new Intent(this,DeleteAlarmActivity.class);
+        startActivity(intent);
+        return false;
+    }
+
+
+
+
+
 
     private void refreshFruits() {
         new Thread(new Runnable() {
