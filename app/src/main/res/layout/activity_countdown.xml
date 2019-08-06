@@ -29,13 +29,26 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"><!--下拉刷新-->
-            <TextView
+         <!---->
+            <android.support.design.widget.CoordinatorLayout
+
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="这里是倒计时模块，但是此模块被上交国家了"
-                android:textSize="15dp"/>
+                tools:context="com.pac.komputer.daysleftuntilacertaindate.MainActivity">
 
+
+                <include layout="@layout/content_main"/>
+
+
+
+            </android.support.design.widget.CoordinatorLayout>
+
+
+
+
+
+            <!---->
         </android.support.v4.widget.SwipeRefreshLayout>
 
         <android.support.design.widget.FloatingActionButton

@@ -36,11 +36,15 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
             +COl_ACCOUNTS+" TEXT NOT NULL,"
             +COL_PASSWORD+" TEXT NOT NULL);";
 
+
+    //
     private static final String CREATE_ALARM_TABLE="CREATE TABLE "+ALARM_TB_NAME
             +"(_id INTEGER PRIMARY KEY AUTOINCREMENT,"
             +COL_ALARM_STATUS +" TEXT NOT NULL,"
             +COL_ALARM_REPEAT_TIMES+" Text NOT NULL,"
             +COL_TIME+" TEXT NOT NULL);";
+
+    //
 
     private static final String CREATE_LAMP_TABLE="CREATE TABLE "+LAMP_TB_NAME
             +"("+COL_ID+" INTEGER PRIMARY KEY,"
@@ -48,6 +52,8 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
             +COL_LAMP_DATA_TEMPERATUE+" REAL,"
             +COL_LAMP_DATA_NOISE+" INTEGER,"
             +COL_LAMP_DATA_HUMIDITY+" REAL);";
+
+    //
 
 
 
@@ -68,9 +74,10 @@ public class MyDataBaseHelper extends SQLiteOpenHelper {
     private void createTable(SQLiteDatabase db)
     {
         db.execSQL(CREATE_ACCOUNT_TABLE);
+        //
         db.execSQL(CREATE_ALARM_TABLE);
         db.execSQL(CREATE_LAMP_TABLE);
-
+        //
 
     }
     @Override

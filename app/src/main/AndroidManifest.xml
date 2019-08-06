@@ -10,7 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".Alarm.DeleteAlarmActivity"></activity>
+
+
+        <receiver
+            android:name=".Alarm.AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".Alarm.DeleteAlarmActivity" />
         <activity android:name=".Alarm.AlarmEditActivity" />
         <activity
             android:name=".MemorandumAmendActivity"
@@ -40,11 +47,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".CallAlarm" />
 
-        <activity
-            android:name=".AlarmAlert"
-            android:label="@string/app_name" />
     </application>
 
 </manifest>

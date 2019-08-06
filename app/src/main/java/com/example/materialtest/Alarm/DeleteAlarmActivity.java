@@ -34,7 +34,7 @@ public class DeleteAlarmActivity extends AppCompatActivity {
             }
         });
 
-        listView = (ListView)findViewById(R.id.delete_alarm_list);
+        listView = findViewById(R.id.delete_alarm_list);
         initData();
 
     }

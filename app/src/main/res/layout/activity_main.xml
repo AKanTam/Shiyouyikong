@@ -35,6 +35,7 @@
                 android:gravity="center"
                 android:text="这里是首页，我也不知道该放什么"
                 android:textSize="25dp"/>
+            <include layout="@layout/content_main"/>
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

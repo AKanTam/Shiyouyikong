@@ -102,7 +102,7 @@ public class AlarmEditActivity extends AppCompatActivity implements View.OnClick
     protected void onResume() {
         Log.d(TAG,"onResume");
         super.onResume();
-        TimePicker timePicker = (TimePicker) findViewById(R.id.timePicker);
+        TimePicker timePicker = findViewById(R.id.timePicker);
         timePicker.setIs24HourView(true);
         timePicker.setCurrentHour(time_calender.getTime().getHours());
         timePicker.setCurrentMinute(time_calender.getTime().getMinutes());
@@ -120,7 +120,7 @@ public class AlarmEditActivity extends AppCompatActivity implements View.OnClick
         });
 
 
-        listView = (ListView) findViewById(R.id.alarm_edit_list_view);
+        listView =  findViewById(R.id.alarm_edit_list_view);
         setDataList();
         simpleAdapter = new SimpleAdapter(this, datalist, R.layout.alarm_edit_item,
                 new String[]{"name", "value"}, new int[]{R.id.name, R.id.value});

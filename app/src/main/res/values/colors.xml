@@ -154,4 +154,11 @@
     <color name="grassgreen">#99cc33</color><!--草绿色 -->
     <color name="gray_cc">#cccccc</color><!--灰色cc -->
     <color name="gray_8f">#8f8f8f</color><!--灰色8f -->
+
+
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+    <color name="colorTextBox">#b6b6b6</color>
+    <color name="colorBackground">#383c3d</color>
+    <color name="colorAccentGreen">#10b73f</color>
 </resources>
