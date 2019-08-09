@@ -29,13 +29,71 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"><!--下拉刷新-->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="这里是首页，我也不知道该放什么"
-                android:textSize="25dp"/>
-            <include layout="@layout/content_main"/>
+                                                         <!---->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="bottom"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <Button
+                        android:id="@+id/main_1"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="备忘录"
+                        android:textSize="40sp" />
+
+                    <Button
+                        android:id="@+id/main_2"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="200dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="倒计时"
+                        android:textSize="40sp" />
+
+                    <Button
+                        android:id="@+id/main_3"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="320dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="学习时间分析"
+                        android:textSize="40sp" />
+
+                    <Button
+                        android:id="@+id/main_4"
+                        style="@style/Widget.AppCompat.Button.Borderless"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="25dp"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:text="定时提醒"
+                        android:textSize="40sp" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+                                                         <!---->
 
         </android.support.v4.widget.SwipeRefreshLayout>
 

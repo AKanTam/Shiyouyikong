@@ -113,7 +113,7 @@ public class CountdownActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_countdown);
         //
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
 
 
 
@@ -192,9 +192,9 @@ public class CountdownActivity extends BaseActivity {
     }
 
     //
-    private void buildRecyclerView(){
+    public void buildRecyclerView(){
 
-        recyclerView = (RecyclerView) findViewById(R.id.recycler);
+        recyclerView = findViewById(R.id.recycler);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyAdapter(newDates, CountdownActivity.this);
@@ -281,7 +281,7 @@ public class CountdownActivity extends BaseActivity {
         saveData();
     }
 
-    private void loadData() {
+    public void loadData() {
 
         SharedPreferences mPrefs = getSharedPreferences("objects", context.MODE_PRIVATE);
         Gson gson = new Gson();

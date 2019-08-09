@@ -100,7 +100,7 @@ public class MemorandumActivity extends BaseActivity implements View.OnClickList
     }
 
     //初始化控件
-    private void init(){
+    public void init(){
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(this);
 
@@ -300,7 +300,7 @@ public class MemorandumActivity extends BaseActivity implements View.OnClickList
     /**
      * ListView里的组件包装类
      */
-    class ViewHolder{
+    public class ViewHolder{
         TextView titleView;
         TextView bodyView;
         TextView timeView;
