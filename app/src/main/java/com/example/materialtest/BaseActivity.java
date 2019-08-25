@@ -30,10 +30,10 @@ public class BaseActivity extends AppCompatActivity {
 
     public void showBackDialog() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("警报警报！")
+        builder.setTitle("提示")
                 .setIcon(R.mipmap.ic_launcher)
-                .setMessage("是否要说再见?")
-                .setPositiveButton("含泪说再见",
+                .setMessage("是否要退出软件")
+                .setPositiveButton("退出",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog,
                                                 int which) {

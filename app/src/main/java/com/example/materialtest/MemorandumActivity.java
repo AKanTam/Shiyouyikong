@@ -1,14 +1,20 @@
 package com.example.materialtest;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
@@ -31,6 +37,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import com.example.materialtest.database.MyDB;
 import com.example.materialtest.enity.Record;
@@ -46,6 +53,7 @@ public class MemorandumActivity extends BaseActivity implements View.OnClickList
     private DrawerLayout mDrawerLayout;
     private ListView myListView;
     private MyBaseAdapter myBaseAdapter;
+    private final static int REQUEST_ENABLE_BT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,18 +164,47 @@ public class MemorandumActivity extends BaseActivity implements View.OnClickList
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         switch (item.getItemId()) {
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.backup:
-                Toast.makeText(this, "你现在点击的是蓝牙同步按钮，但是并没有什么卵用，因为我们现在并没有蓝牙模块", Toast.LENGTH_LONG).show();
+                BluetoothAdapter blueadapter = BluetoothAdapter.getDefaultAdapter();//获得蓝牙适配器
+                if (blueadapter == null) {     Toast.makeText(this, "该设备不支持蓝牙", Toast.LENGTH_SHORT).show();
+                // device doesn't support Bluetooth
+                }else{
+                if (!blueadapter.isEnabled()) {
+                    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                }}
+
+
+
+
+
+                /*
+                if(ContextCompat.checkSelfPermission(MemorandumActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        == PackageManager.PERMISSION_GRANTED){
+                    Toast.makeText(MemorandumActivity.this,"搜索回调权限已开启",Toast.LENGTH_SHORT).show();
+                    if(blueadapter.isDiscovering()){
+                        blueadapter.cancelDiscovery();
+                    }
+                    blueadapter.startDiscovery();
+                }else{
+                    Toast.makeText(MemorandumActivity.this,"搜索回调权限未开启",Toast.LENGTH_SHORT).show();
+                    ActivityCompat.requestPermissions(MemorandumActivity.this,new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},REQUEST_ACCESS_COARSE_LOCATION);
+                }*/
+
+
+
                 break;
             default:
         }
         return true;
         //Toolbar菜单点击事件
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -305,6 +342,7 @@ public class MemorandumActivity extends BaseActivity implements View.OnClickList
         TextView bodyView;
         TextView timeView;
     }
+
 
 }
 

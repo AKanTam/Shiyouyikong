@@ -170,25 +170,5 @@ public class MainActivity extends BaseActivity {
     }//下拉刷新逻辑
 
 
-//Toolbar 菜单点击事件
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                mDrawerLayout.openDrawer(GravityCompat.START);
-                break;
-            case R.id.backup:
-                Toast.makeText(this, "你现在点击的是蓝牙同步按钮，但是并没有什么卵用，因为我们现在并没有蓝牙模块", Toast.LENGTH_LONG).show();
-                break;
-            default:
-        }
-        return true;
-        //Toolbar菜单点击事件
-    }
 
 }

@@ -1,5 +1,6 @@
 package com.example.materialtest;
 
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -103,6 +104,8 @@ public class CountdownActivity extends BaseActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
     private ArrayList<NewDateClass> newDates;
+    private MemorandumActivity.MyBaseAdapter myBaseAdapter;
+    private final static int REQUEST_ENABLE_BT = 1;
 
     //
 
@@ -392,7 +395,14 @@ public class CountdownActivity extends BaseActivity {
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 break;
             case R.id.backup:
-                Toast.makeText(this, "你点击的是蓝牙同步按钮，但是并没有什么卵用，因为我们现在没有蓝牙模块", Toast.LENGTH_SHORT).show();
+                BluetoothAdapter blueadapter = BluetoothAdapter.getDefaultAdapter();//获得蓝牙适配器
+                if (blueadapter == null) {     Toast.makeText(this, "该设备不支持蓝牙", Toast.LENGTH_SHORT).show();
+                    // device doesn't support Bluetooth
+                }else{
+                    if (!blueadapter.isEnabled()) {
+                        Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                        startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+                    }}
                 break;
             default:
         }
